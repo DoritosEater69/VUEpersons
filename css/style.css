@@ -1,0 +1,18 @@
+.infoItem{
+	border-bottom: 2px solid lightgray;
+}
+
+.emailIcon{
+	font-size: 1.5em;
+	border-right: 2px solid black;
+}
+
+.genderIcon{
+	font-size: 1.5em;
+	border-right: 2px solid black;
+}
+
+.countryIcon{
+	font-size: 1.5em;
+	border-right: 2px solid black;
+}
