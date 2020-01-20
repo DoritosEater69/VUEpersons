@@ -2,7 +2,9 @@ new Vue({
 
 	el: '#app',
 	data: {
+		limit: 5,
 		person: [],
+		limitedArr: [],
 		email: 'The Users Email Adress',
 	},
 
@@ -24,7 +26,20 @@ new Vue({
 
 		randPerson: function () {
 			console.log(this.person);
-		}
-
+			axios
+				.get('https://randomuser.me/api')
+				.then(response => (this.person = response.data.results))
+		},
 	},
+
+	computed: {
+		limited() {
+			console.log("in limited");
+			if (this.limit) {
+				this.limitedArr = this.person.slice(0, this.limitedArr);
+				return this.person.slice(0, this.limitedArr);
+			}
+			return this.person;
+		}
+	}
 })

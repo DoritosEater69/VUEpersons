@@ -15,7 +15,7 @@
 <body>
 
 
-	<div class="container-fluid" id="app">
+	<div class="container-fluid" id="app" v-cloak>
 		<div class="row d-flex align-items-end text-right">
 			<div class="col-12 text-center py-5">
 				<h2>Random Person</h2>
@@ -25,21 +25,34 @@
 		<div class="row">
 			<div class="col-12 d-flex justify-content-center align-items-center flex-column">
 				<div v-for="data in person">
-					<div class="card" style="width: 20rem;">
-						<img :src="data.picture.large" class="card-img-top" alt="...">
+					<p class="card-text my-0 d-flex justify-content-between username"><b class="mx-auto">{{ data.login.username }}</b></p>
+					<div class="card" style="width: 20rem;" v-if="data">
+						<p class="pl-2 d-flex justify-content-center genderClass"><i class="fas fa-venus" v-if="data.gender == 'female'"></i><i class="fas fa-mars" v-if="data.gender == 'male'"></i></p>
+						<img :src="data.picture.large" class="card-img-top">
 						<div class="card-body">
-							<div class="card-text my-0 infoItem py-2"> <i class="fas fa-venus-mars genderIcon pr-2"></i> <p class="pl-2">{{ data.gender | capitalize }}</div>
-							<p class="card-text my-0 infoItem py-2"> First Name : {{ data.name.first }}</p>
-							<p class="card-text my-0 infoItem py-2"> Last Name : {{ data.name.last }}</p>
-							<p class="card-text my-0 infoItem py-2"> Age : {{ data.dob.age }}</p>
-							<p class="card-text my-0 infoItem py-2"> City: {{ data.location.city }}</p>
-							<p class="card-text my-0 infoItem py-2"> <i class="far fa-flag countryIcon pr-2"></i> {{ data.location.country }} </p>
-							<p class="card-text my-0 infoItem py-2"> Username: {{ data.login.username }} </p>
-							<p class="card-text my-0 infoItem py-2" v-bind:title="email"> <i class="fas fa-at emailIcon pr-2"></i> {{ data.email }} </p>
+							<p class="card-text my-0 infoItem d-flex justify-content-between"> First Name : <span>{{ data.name.first }}</span></p>
+							<p class="card-text my-0 infoItem d-flex justify-content-between"> Last Name : <span>{{ data.name.last }}</span></p>
+							<p class="card-text my-0 infoItem d-flex justify-content-between"> Age : <span>{{ data.dob.age }}</span></p>
+							<p class="card-text my-0 infoItem  d-flex justify-content-between"> City: <span>{{ data.location.city }}</span></p>
+							<p class="card-text my-0 infoItem d-flex justify-content-between"> <i class="far fa-flag countryIcon pr-2"></i> {{ data.location.country }} </p>
+							<p class="card-text my-0 infoItem d-flex justify-content-between" v-bind:title="email"> <i class="fas fa-at emailIcon pr-2"></i> {{ data.email }} </p>
 						</div>
 					</div>
+					<div class="text-center pt-5">
+						<button class="btn btn-primary" type="button" enabled @click="randPerson">
+							<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="!data"></span>
+							Get Person
+				</button>
+					</div>
 				</div>
-				<button type="button" class="btn btn-primary my-5" @click="randPerson">Get Person</button>
+				<div class="text-center pt-5">
+					<button class="btn btn-primary" type="button" enabled>
+							<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
+							Get Person
+				</button>
+
+					<div class="" v-for="data in limitedArr"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -53,7 +66,7 @@
 	<script src="https://unpkg.com/axios/dist/axios.js"></script>
 	<script src="script/script.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
